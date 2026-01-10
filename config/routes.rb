@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
-  get "/products", to: "products#index"
-  # resources :products
-  get "/products/:id", to: "products#show", as: "product"
-  get "/products/:id/edit", to: "products#edit"
-  patch "/products/:id", to: "products#update", as: "edit_product"
+  get "customers/index"
+  get "customers/show"
+  get "customers/edit"
+  get "customers/update"
+  get "orders/index"
+  get "orders/show"
+  get "orders/edit"
+  get "orders/update"
+  resources :products
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
