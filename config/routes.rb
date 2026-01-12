@@ -21,6 +21,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  get "/server-time" => "server#server_time"
   get "/add" => "add#summation"
+  get "/db-time" => "server_time#db_time"
 end
