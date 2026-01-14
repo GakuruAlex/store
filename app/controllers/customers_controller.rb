@@ -1,4 +1,5 @@
 class CustomersController < ApplicationController
+  before_action :getcustomer, only: [ :edit, :show ]
   def index
     @customers = Customer.all
   end
@@ -6,8 +7,9 @@ class CustomersController < ApplicationController
   def new
     @customer = Customer.new
   end
+
   def create
-    @customer = Customer.new(params[customer_params])
+    @customer = Customer.new(customer_params)
     if @customer.save
       redirect_to @customer
     else
@@ -15,7 +17,6 @@ class CustomersController < ApplicationController
     end
   end
   def show
-    @customer = get_customer
   end
 
   def edit
@@ -25,7 +26,7 @@ class CustomersController < ApplicationController
   end
 
   private
-  def get_customer
+  def getcustomer
     @customer = Customer.find(params[:id])
   end
   def customer_params
