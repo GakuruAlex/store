@@ -1,13 +1,21 @@
 Rails.application.routes.draw do
-  get "customers/index"
-  get "customers/show"
-  get "customers/edit"
-  get "customers/update"
   get "orders/index"
   get "orders/show"
   get "orders/edit"
   get "orders/update"
   resources :products
+
+  # resources customers
+  get "/customers" => "customers#index", as: :customers
+  get "customers/new" => "customers#new", as: :new_customer
+
+  get "/customers/:id" => "customers#show", as: :customer
+
+  get "customers/:id/edit" => "customers#edit", as: :edit_customer
+  patch "customers/:id" => "customers#update"
+  put "customers/:id" => "customers#update"
+
+  post "customers" => "customers#create"
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -22,6 +30,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   get "/addition" => "additions#index"
-  get "/db-time" => "clocks#index"
-  get "server-time" => "clocks#index"
+  get "/clocks/db-time" => "clocks#index"
+  get "/clocks/server-time" => "clocks#index"
 end
