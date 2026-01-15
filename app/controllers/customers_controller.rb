@@ -1,5 +1,5 @@
 class CustomersController < ApplicationController
-  before_action :getcustomer, only: [ :edit, :show ]
+  before_action :getcustomer, only: [ :edit, :show, :delete, :update ]
   def index
     @customers = Customer.all
   end
@@ -11,7 +11,7 @@ class CustomersController < ApplicationController
   def create
     @customer = Customer.new(customer_params)
     if @customer.save
-      redirect_to @customer
+      redirect_to customers_path, notice: "Customer #{@customer.name} Created Successfully"
     else
       render :new, :status, :unprocessable_entity
     end
@@ -23,6 +23,14 @@ class CustomersController < ApplicationController
   end
 
   def update
+    @customer.update(customer_params)
+    redirect_to @customer
+  end
+  def delete
+    if @customer.destroy
+      redirect_to customers_path, notice: "Customer deleted successfully."
+    else redirect_to customers_path, alert: "Unable to delete customer."
+    end
   end
 
   private
