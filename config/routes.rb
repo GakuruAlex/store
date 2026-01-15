@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   # resources customers
   get "/customers" => "customers#index", as: :customers
   get "customers/new" => "customers#new", as: :new_customer
+  post "customers" => "customers#create"
 
   get "/customers/:id" => "customers#show", as: :customer
 
@@ -15,7 +16,8 @@ Rails.application.routes.draw do
   patch "customers/:id" => "customers#update"
   put "customers/:id" => "customers#update"
 
-  post "customers" => "customers#create"
+  delete "customers/:id" => "customers#delete"
+
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
