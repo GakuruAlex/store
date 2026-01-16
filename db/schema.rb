@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_15_174250) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_16_142207) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -20,12 +20,23 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_15_174250) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "order_items", force: :cascade do |t|
+    t.decimal "amount"
+    t.datetime "created_at", null: false
+    t.bigint "order_id", null: false
+    t.bigint "product_id", null: false
+    t.integer "quantity"
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["product_id"], name: "index_order_items_on_product_id"
+  end
+
   create_table "orders", force: :cascade do |t|
+    t.decimal "amount"
     t.datetime "created_at", null: false
     t.integer "customer_id"
     t.date "date_of_purchase"
     t.integer "product_id", null: false
-    t.integer "quantity"
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["product_id"], name: "index_orders_on_product_id"
@@ -40,6 +51,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_15_174250) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "order_items", "products"
   add_foreign_key "orders", "customers", on_delete: :nullify
   add_foreign_key "orders", "products"
 end
