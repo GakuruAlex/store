@@ -69,3 +69,5 @@ end
 gem "tailwindcss-rails", "~> 4.4"
 gem "pg"
 gem "dotenv-rails", groups: [ :development, :test ]
+gem "foreman"
+
