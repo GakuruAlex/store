@@ -14,8 +14,8 @@ products = Product.create!([
 ])
 
 orders = [
-  Order.create!(customer: customers[0], amount: 1200.0, date_of_purchase: Date.today),
-  Order.create!(customer: customers[1], amount: 300.0, date_of_purchase: Date.today - 1)
+  Order.create!(customer: customers[0], amount: 300.0, date_of_purchase: Date.today),
+  Order.create!(customer: customers[1], amount: 1200.0, date_of_purchase: Date.today - 1)
 ]
 
 OrderProduct.create!(order: orders[0], product: products[1], quantity: 2)
