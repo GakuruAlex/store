@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
-  get "orders/index"
-  get "orders/show"
-  get "orders/edit"
-  get "orders/update"
+  resources :order_items
   resources :products
 
   # resources customers
@@ -18,6 +15,8 @@ Rails.application.routes.draw do
 
   delete "customers/:id" => "customers#delete"
 
+  # resources orders
+  get "/orders" => "orders#index", as: :orders
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

@@ -1,0 +1,62 @@
+<%= form_with(model: order_item, class: "space-y-6") do |form| %>
+  <% if order_item.errors.any? %>
+    <div id="error_explanation"
+         class="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-md">
+      <h2 class="font-semibold mb-2">
+        <%= pluralize(order_item.errors.count, "error") %> prohibited this order_item from being saved:
+      </h2>
+      <ul class="list-disc list-inside text-sm">
+        <% order_item.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!-- Product -->
+  <div>
+    <%= form.label :product_id, "Product", class: "block text-sm font-medium text-gray-700" %>
+    <%= form.collection_select(
+          :product_id,
+          Product.order(:name),
+          :id,
+          :name,
+          { prompt: "Select a product" },
+          class: "mt-1 block w-full rounded-md shadow-sm px-3 py-2 border border-gray-300 focus:ring-2 focus:ring-blue-600"
+        ) %>
+  </div>
+
+  <!-- Quantity -->
+  <div>
+    <%= form.label :quantity, class: "block text-sm font-medium text-gray-700" %>
+    <%= form.number_field :quantity,
+          min: 1,
+          class: "mt-1 block w-full rounded-md shadow-sm px-3 py-2 border border-gray-300 focus:ring-2 focus:ring-blue-600" %>
+  </div>
+
+  <!-- Price (disabled, comes from product) -->
+  <div>
+    <%= form.label :price, "Price", class: "block text-sm font-medium text-gray-700" %>
+    <%= form.number_field :price,
+          value: order_item.product&.price,
+          step: 0.01,
+          disabled: true,
+          class: "mt-1 block w-full rounded-md shadow-sm px-3 py-2 border border-gray-300 bg-gray-100 text-gray-600 cursor-not-allowed" %>
+  </div>
+
+  <!-- Amount (disabled, calculated quantity × price) -->
+  <div>
+    <%= form.label :amount, "Amount", class: "block text-sm font-medium text-gray-700" %>
+    <%= form.number_field :amount,
+          value: order_item.quantity.to_i * order_item.product&.price.to_f,
+          step: 0.01,
+          disabled: true,
+          class: "mt-1 block w-full rounded-md shadow-sm px-3 py-2 border border-gray-300 bg-gray-100 text-gray-600 cursor-not-allowed" %>
+  </div>
+
+  <!-- Submit -->
+  <div>
+    <%= form.submit "Save Item",
+          class: "w-full sm:w-auto rounded-md px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-blue-600" %>
+  </div>
+<% end %>
