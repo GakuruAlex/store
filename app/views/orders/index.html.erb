@@ -1,27 +1,49 @@
-<div>
-  <h2>Orders</h2>
+<div class="max-w-6xl mx-auto mt-10 p-6">
+  <div class="flex justify-between items-center mb-6">
+  <h2 class="text-2xl font-bold text-gray-800">Orders</h2>
 
-  <table>
-    <thead>
+  </div>
+<div class="overflow-hidden rounded-xl border border-gray-200 shadow-sm">
+<table class="min-w-full divide-y divide-gray-200 bg-white">
+    <thead class="bg-gray-20">
       
       <tr>
-        <th>Date of order</th>
-        <th>order_items_id</th>
-        <th>customer id</th>
-        <th>amount</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Date of order</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">customer</th>
+        <th class="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">amount</th>
+        <th class="px-6 py-3 text-right text-xs font-medium text-gray-700 uppercase tracking-wider">Actions</th>
+
       </tr>
         
     
     </thead>
-    <tbody>
+    <tbody class="divide-y divide-gray-200">
       <% @orders.each_with_index do |order, index|%>
-      <tr>
-        <td><%=order.date_of_purchase%></td>
-        <td><%=order.order_items_id%></td>
-        <td><%=order.customer_id%></td>
-        <td><%+order.amount%></td>
+      <tr class="hover:bg-gray-50 transition duration-150">
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+          <div class="text-sm font-semibold text-gray-900">
+            <%=order.date_of_purchase%>
+          </div>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+          <div class="text-sm font-semibold text-gray-900">
+          <%=order.customer.name%>
+
+          </div>
+        </td>
+        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+          <div class="text-sm font-semibold text-gray-900">
+                      <%=order.amount%>
+
+          </div>
+        </td>
+        <td class="px-6 py-4">
+          <a href="" class="text-blue-600 hover:text-blue-900">View</a>
+        </td>
       </tr>
       <%end%>
     </tbody>
   </table>
+</div>
+  
 </div>
