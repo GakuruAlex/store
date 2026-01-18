@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :order_items
   resources :products
 
   # resources customers
@@ -17,6 +16,14 @@ Rails.application.routes.draw do
 
   # resources orders
   get "/orders" => "orders#index", as: :orders
+  get "orders/new" => "orders#new", as: :new_order
+  post "orders" => "orders#create"
+
+  get "orders/:id" => "orders#show", as: :order
+
+  get "orders/:id/edit" => "orders#edit", as: :edit_order
+  patch "orders/:id" => "orders#update"
+
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
