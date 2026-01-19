@@ -8,8 +8,8 @@
 /.bundle
 
 # Ignore all environment files.
-/.env*
-
+.env
+/.idea
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
@@ -28,21 +28,15 @@
 !/tmp/storage/
 !/tmp/storage/.keep
 
-/public/assets
-
 # Ignore key files for decrypting credentials and more.
 /config/*.key
 .kamal
-.
-bin/
 log/
 node-modules/
 script/
 tmp/
 .github
-*.yml
 vendor/
-.ruby-version
 
 
 /app/assets/builds/*
