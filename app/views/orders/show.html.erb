@@ -1,4 +1,41 @@
-<div>
-  <h1 class="font-bold text-4xl">Orders#show</h1>
-  <p>Find me in app/views/orders/show.html.erb</p>
+<div class="max-w-5xl mx-auto bg-white rounded-xl shadow-lg p-8 space-y-8">
+  <!-- Header with actions -->
+  <div class="flex items-center justify-between border-b pb-4">
+    <h2 class="text-2xl font-bold text-gray-800">Order <%= @order.id %></h2>
+    <div class="space-x-3">
+      <%= link_to "View All Orders", orders_path, class: "btn-primary" %>
+      <%= link_to "Edit", edit_order_path(@order), class: "btn-warning" %>
+      <%= link_to "Delete", order_path(@order), method: :delete, data: { confirm: "Are you sure?" }, class: "btn-danger" %>
+    </div>
+  </div>
+
+  <!-- Two-column layout -->
+  <div class="grid grid-cols-2 gap-8">
+    <!-- Left: Customer Info -->
+    <div class="space-y-2">
+      <h3 class="text-lg font-semibold text-gray-700">Customer Info</h3>
+      <p class="text-gray-800"><%= @order.customer.name %></p>
+      <p class="text-sm text-gray-500">Purchased on <%= @order.date_of_purchase %></p>
+    </div>
+
+    <!-- Right: Products -->
+    <div class="space-y-4">
+      <h3 class="text-lg font-semibold text-gray-700">Products</h3>
+      <% @order.order_products.each do |op| %>
+        <div class="flex justify-between items-center border rounded-md p-4 bg-gray-50">
+          <div>
+            <p class="font-medium text-gray-700"><%= op.product.name %></p>
+            <p class="text-sm text-gray-500">Quantity: <%= op.quantity %></p>
+          </div>
+          <p class="text-gray-800 font-semibold">$<%= op.product.price %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Total -->
+  <div class="border-t pt-6 text-right">
+    <h3 class="text-lg font-semibold text-gray-700">Total Amount</h3>
+    <p class="text-3xl font-bold text-green-600">$<%= @order.amount %></p>
+  </div>
 </div>
