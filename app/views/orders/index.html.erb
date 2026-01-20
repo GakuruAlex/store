@@ -37,9 +37,11 @@
 
           </div>
         </td>
-        <td class="px-6 py-4">
-          <a href="" class="text-blue-600 hover:text-blue-900">View</a>
-        </td>
+        <td class="px-6 py-4 text-center">
+  <%= link_to "View", order_path(order),
+    class: "inline-block bg-blue-600 text-white px-3 py-1 rounded-md text-sm font-medium shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+</td>
+
       </tr>
       <%end%>
     </tbody>
