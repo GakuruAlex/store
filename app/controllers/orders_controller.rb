@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update]
+  before_action :set_order, only: [ :show, :edit, :update ]
   def index
     @orders = Order.includes(:customer)
   end
@@ -31,11 +31,10 @@ class OrdersController < ApplicationController
       :date_of_purchase,
       :amount,
       :customer_id,
-      order_products_attributes: [:product_id, :quantity]
+      order_products_attributes: [ :product_id, :quantity ]
     )
   end
   def set_order
     @order = Order.find(params[:id])
   end
-
 end
