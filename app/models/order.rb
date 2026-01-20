@@ -19,4 +19,13 @@ class Order < ApplicationRecord
   has_many :order_products
   has_many :products, through: :order_products
   accepts_nested_attributes_for :order_products
+  before_save :calculate_total
+
+  private
+  def calculate_total 
+      self.amount = order_products.sum do |op|
+       op.quantity.to_i * op.product.price.to_f
+      end 
+  end
+
 end
