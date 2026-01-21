@@ -18,19 +18,29 @@
       <p class="text-sm text-gray-500">Purchased on <%= @order.date_of_purchase %></p>
     </div>
 
-    <!-- Right: Products -->
-    <div class="space-y-4">
-      <h3 class="text-lg font-semibold text-gray-700">Products</h3>
-      <% @order.order_products.each do |op| %>
-        <div class="flex justify-between items-center border rounded-md p-4 bg-gray-50">
-          <div>
-            <p class="font-medium text-gray-700"><%= op.product.name %></p>
-            <p class="text-sm text-gray-500">Quantity: <%= op.quantity %></p>
-          </div>
-          <p class="text-gray-800 font-semibold">$<%= op.product.price %></p>
+    <!-- Right: Products --> <div class="space-y-4">
+    <h3 class="text-lg font-semibold text-gray-800">Products</h3>
+    <% @order.order_products.each do |op| %>
+      <div class="flex justify-between items-center border rounded-md p-5 bg-gray-50">
+        <!-- Product name + quantity -->
+        <div> <p class="font-medium text-gray-900">
+          <%= op.product.name %>
+        </p>
+          <p class="text-sm text-gray-600">
+            Qty: <%= op.quantity %>
+          </p>
+        </div> <!-- Extended price (quantity × unit price) -->
+        <div class="text-right">
+          <p class="text-gray-800 font-semibold">
+    $<%= op.quantity * op.product.price %>
+  </p>
+          <p class="text-xs text-gray-500">
+            (@ $<%= op.product.price %> each)
+          </p>
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
+  </div>
   </div>
 
   <!-- Total -->
