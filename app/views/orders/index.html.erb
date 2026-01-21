@@ -1,6 +1,8 @@
 <div class="max-w-6xl mx-auto mt-10 p-6">
-  <div class="flex justify-between items-center mb-6">
-  <h2 class="text-2xl font-bold text-gray-800">Orders</h2>
+    <div class="flex justify-between items-center mb-6">
+    <h2 class="text-2xl font-bold text-gray-800">Orders</h2>
+    <!-- Add New Product/Order link -->
+    <%= link_to "Add New Order", new_order_path, class: "inline-block bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium shadow hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500" %>
 
   </div>
 <div class="overflow-hidden rounded-xl border border-gray-200 shadow-sm">
@@ -43,11 +45,6 @@
     rounded-md text-sm font-medium shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
 </td>
 
-        <td class="px-6 py-4 text-center">
-  <%= link_to "View", order_path(order),
-    class: "inline-block bg-blue-600 text-white px-3 py-1
-     rounded-md text-sm font-medium shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500" %>
-</td>
 
       </tr>
       <%end%>
