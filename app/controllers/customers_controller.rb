@@ -1,5 +1,5 @@
 class CustomersController < ApplicationController
-  before_action :getcustomer, only: [ :edit, :show, :delete, :update ]
+  before_action :set_customer, only: [ :edit, :show, :delete, :update ]
   def index
     @customers = Customer.all
   end
@@ -34,8 +34,9 @@ class CustomersController < ApplicationController
   end
 
   private
-  def getcustomer
+  def set_customer
     @customer = Customer.find(params[:id])
+    @orders = @customer.orders.order(date_of_purchase: :desc)
   end
   def customer_params
     params.expect([ customer: [ :name ] ])
