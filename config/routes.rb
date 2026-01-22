@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
   get "orders/:id/edit" => "orders#edit", as: :edit_order
   patch "orders/:id" => "orders#update"
+  delete "orders/:id" => "orders#destroy", as: :delete_order
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
