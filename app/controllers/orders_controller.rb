@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [ :show, :edit, :update ]
+  before_action :set_order, only: [ :show, :edit, :update , :destroy]
   def index
     @orders = Order.includes(:customer)
   end
@@ -22,6 +22,10 @@ class OrdersController < ApplicationController
   end
 
   def update
+  end
+
+  def destroy
+    @order.destroy
   end
 
   private
