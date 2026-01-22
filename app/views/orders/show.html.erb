@@ -14,8 +14,18 @@
     <!-- Left: Customer Info -->
     <div class="space-y-2">
       <h3 class="text-lg font-semibold text-gray-700">Customer Info</h3>
-      <p class="text-gray-800"><%= @order.customer.name %></p>
-      <p class="text-sm text-gray-500">Purchased on <%= @order.date_of_purchase %></p>
+      <nav class="flex items-center mb-6 text-gray-500 text-sm">
+        <%= link_to "Back to Customer",
+                    customer_path(@order.customer),
+                    class: "hover:text-blue-600 transition" %>
+
+        <span class="mx-2">/</span>
+
+        <span class="text-gray-800 font-semibold">
+          <%= @order.customer.name %>
+        </span>
+      </nav>
+      <p class="text-sm text-gray-500">Purchased on <%= @order.date_of_purchase.strftime("%d/%m/%Y") %></p>
     </div>
 
     <!-- Right: Products --> <div class="space-y-4">
