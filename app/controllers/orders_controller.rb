@@ -7,9 +7,16 @@ class OrdersController < ApplicationController
   def show
   end
   def new
-    @order = Order.new
-    2.times {@order.order_products.build}
-  end
+    if params[:customer_id]
+      @customer = Customer.find(params[:customer_id])
+      @order = @customer.orders.build
+      2.times {@order.order_products.build}
+    else
+      @order = Order.new
+      2.times {@order.order_products.build}
+
+    end
+     end
   def create
     @order = Order.new(order_params)
     if @order.save

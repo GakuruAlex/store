@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   put "customers/:id" => "customers#update"
 
   delete "customers/:id" => "customers#delete"
+  # new customer order
+  get "/customers/:customer_id/orders/new" => "orders#new", as: :new_customer_order
 
   # resources orders
   get "/orders" => "orders#index", as: :orders
