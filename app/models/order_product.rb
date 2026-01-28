@@ -18,4 +18,13 @@
 class OrderProduct < ApplicationRecord
   belongs_to :order
   belongs_to :product
+  before_save :update_quantity
+
+
+  private
+  def update_quantity
+    @product = Product.find(self.product_id)
+    @product.quantity -= quantity
+    @product.save
+  end
 end
